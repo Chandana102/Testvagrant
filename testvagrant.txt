@@ -1,0 +1,20 @@
+def generate_combinations(budget):
+    subscription_combinations = []
+    for i in range(1, len(daily_prices)+1):
+        subscription_combinations += list(combinations(daily_prices.items(), i))
+
+    
+    affordable_combinations = []
+    for combination in subscription_combinations:
+        cost = sum([daily_price * 7 for newspaper, daily_price in combination])
+        if cost <= budget:
+            affordable_combinations.append(combination)
+
+    return affordable_combinations
+weekly_budget = int(input('Enter your weekly budget for subscriptions: '))
+
+
+combinations = generate_combinations(weekly_budget)
+print(f'Number of affordable combinations: {len(combinations)}')
+for combination in combinations:
+    print(combination)
